@@ -1,6 +1,4 @@
 from models import City, State
-from models import CasesLocation
-from sqlalchemy.sql import or_
 
 
 class ReportService:
@@ -34,11 +32,10 @@ class ReportService:
             state_id=state.id).all()
         return compile_cases(city_situation)
 
-    def compile_cases(data):
-        total_cases = sum(
-            [city.totalcases
+
+def compile_cases(self, data):
+    total_cases = sum(
+        [city.totalcases
             for city in data]) or 0
 
-        return {
-            'totalCases': total_cases,
-        }
+    return {'totalCases': total_cases}
